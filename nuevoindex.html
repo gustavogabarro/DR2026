@@ -46,7 +46,7 @@
             object-fit: cover;
         }
 
-        /* --- SECCIONES --- */
+        /* --- SECCIONES GENERALES --- */
         section {
             padding: 80px 20px;
             max-width: 1200px;
@@ -55,6 +55,11 @@
 
         /* --- HERO (Portada) --- */
         .hero {
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 100px 20px;
+            
             min-height: 100vh; 
             height: auto;
             display: flex;
@@ -62,8 +67,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 100px 20px;
-            position: relative; /* Necesario para ubicar la imagen superior derecha */
+            position: relative; 
+            z-index: 1; 
         }
 
         .hero h1 {
@@ -90,17 +95,19 @@
 
         /* IMAGEN SUPERIOR DERECHA (Desktop Only) */
         .top-right-img {
-            display: none; /* Oculto en móvil */
+            display: none; 
             position: absolute;
-            top: 40px;
-            right: 40px;
-            width: 150px; /* Ajustar tamaño según necesidad */
-            z-index: 10;
+            top: 0;
+            right: 0;
+            z-index: -1; 
         }
 
         @media (min-width: 1024px) {
             .top-right-img {
                 display: block;
+                width: 30vw; 
+                max-width: 600px; 
+                height: auto;
             }
         }
 
@@ -235,12 +242,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 80px; /* Más espacio entre logos */
+            gap: 80px;
             flex-wrap: wrap;
         }
 
         .sponsor-svg {
-            height: 80px; /* Altura controlada para los logos */
+            height: 80px;
             width: auto;
             opacity: 0.9;
             transition: opacity 0.3s;
@@ -250,7 +257,7 @@
             opacity: 1;
         }
 
-        /* --- CIERRE (TEXTO GRANDE) --- */
+        /* --- CIERRE (TEXTO GRANDE Y LOGO) --- */
         .closing-section {
             text-align: center;
             background-color: var(--text-color);
@@ -258,8 +265,17 @@
             padding: 100px 20px;
         }
 
+        /* ESTILO ACTUALIZADO PARA EL LOGO */
+        .closing-logo {
+            max-width: 250px; /* Tamaño duplicado */
+            height: auto;
+            /* El margen auto a los lados asegura el centrado */
+            margin: 0 auto 30px auto; 
+            display: block; /* Importante para que el margen auto funcione */
+            filter: brightness(0) invert(1); 
+        }
+
         .closing-section h2 {
-            /* Cuerpo tipográfico aumentado significativamente */
             font-size: clamp(2.5rem, 6vw, 5rem); 
             margin-bottom: 20px;
             line-height: 1.1;
@@ -278,14 +294,14 @@
             padding: 40px;
             font-size: 0.9rem;
             opacity: 0.7;
-            background-color: var(--bg-color); /* Asegura contraste si el footer queda fuera del bloque negro */
+            background-color: var(--bg-color);
         }
     </style>
 </head>
 <body>
 
     <section class="hero">
-        <img src="https://via.placeholder.com/150x150/000000/FFFFFF?text=Logo" alt="Logo Superior" class="top-right-img">
+        <img src="/image/hoja sola.png" alt="Logo Superior" class="top-right-img">
 
         <p class="hero-year">Edición 2026</p>
         <h1>Desayuno<br>Real</h1>
@@ -302,12 +318,12 @@
     <section class="gallery-section">
         <h2>La Experiencia</h2>
         <div class="gallery-container">
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" alt="Detalle Evento"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800" alt="Copas"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" alt="Ambiente"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=800" alt="Mesa"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1530103862676-de3c9da59af7?auto=format&fit=crop&q=80&w=800" alt="Luz"></div>
-            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800" alt="Moda"></div>
+            <div class="gallery-item"><img src="/image/Desayuno 2022_180.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/bf0a919b-c15a-4e7e-86f9-c19ddf3cdde2.jpeg" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/desayuno-real-2025-10.jpg" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/MA1_6550.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/MA1_6894.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/DSC00645.jpg" alt="DR"></div>
         </div>
         <p style="text-align: center; margin-top: 10px; font-style: italic; opacity: 0.5;">Deslice para ver más</p>
     </section>
@@ -335,12 +351,13 @@
         <h2>Organizan</h2>
         
         <div class="sponsors-grid-main">
-            <img src="https://via.placeholder.com/300x100/CCCCCC/000000?text=LOGO+CIUDADANO.NEWS" alt="Ciudadano.news" class="sponsor-svg">
-            <img src="https://via.placeholder.com/300x100/CCCCCC/000000?text=LOGO+COOPERATIVA+EGC" alt="Cooperativa EGC" class="sponsor-svg">
+            <img src="/image/logo_cn.svg" alt="Ciudadano.news" class="sponsor-svg">
+            <img src="/image/logo_cegc.svg" alt="Cooperativa EGC" class="sponsor-svg">
         </div>
     </section>
 
     <section class="closing-section">
+        <img src="/image/logo DR 26.svg" alt="Logo Desayuno Real" class="closing-logo">
         <h2>SÉ PARTE DEL EVENTO</h2>
         <p>Una experiencia única te espera.</p>
     </section>
