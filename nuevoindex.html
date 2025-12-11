@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desayuno Real | Evento Exclusivo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES Y ESTÉTICA GENERAL --- */
+        :root {
+            --bg-color: #F9F8F4; /* Crema muy suave, casi blanco */
+            --text-color: #1A1A1A; /* Negro carbón */
+            --accent-color: #C5A059; /* Oro viejo suave */
+            --font-display: 'Bodoni Moda', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- BOTÓN PRINCIPAL (RSVP) --- */
+        .btn-rsvp {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            border: 1px solid var(--text-color);
+            transition: all 0.4s ease;
+            margin-top: 20px;
+        }
+
+        .btn-rsvp:hover {
+            background-color: transparent;
+            color: var(--text-color);
+        }
+
+        /* --- SECCIONES --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- HERO (Portada) --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 10vw, 8rem); /* Responsivo: enorme en PC, legible en móvil */
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* --- GALERÍA HORIZONTAL --- */
+        .gallery-section h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory; /* Efecto de enganche al hacer scroll */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Ocultar barra de scroll para estética limpia */
+        .gallery-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .gallery-container::-webkit-scrollbar-thumb {
+            background: var(--text-color);
+            border-radius: 3px;
+        }
+
+        .gallery-item {
+            flex: 0 0 80vw; /* En móvil ocupa 80% del ancho */
+            height: 60vh;
+            scroll-snap-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-item {
+                flex: 0 0 400px; /* Tamaño fijo en escritorio */
+                height: 500px;
+            }
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- VIDEOS --- */
+        .video-section {
+            background-color: #fff; /* Ligero contraste de fondo */
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 900px) {
+            .video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            background: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- UBICACIÓN --- */
+        .map-section {
+            text-align: center;
+        }
+        .map-section h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+        .map-container {
+            width: 100%;
+            height: 450px;
+            background-color: #ddd;
+            filter: grayscale(100%); /* Mapa en escala de grises para elegancia */
+            transition: filter 0.3s;
+        }
+        .map-container:hover {
+            filter: grayscale(0%);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- SPONSORS --- */
+        .sponsors-section {
+            text-align: center;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        .sponsors-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .sponsors-grid-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-bottom: 60px;
+        }
+
+        .sponsor-logo-main {
+            /* Placeholder styles */
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: bold;
+            opacity: 0.8;
+            max-width: 250px;
+        }
+        
+        /* Simular logos si no hay imagen */
+        .logo-placeholder {
+            border: 2px solid var(--text-color);
+            padding: 20px;
+            text-transform: uppercase;
+        }
+
+        .sponsors-grid-secondary {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+        }
+
+        .sponsor-logo-sec {
+            max-width: 150px;
+            font-size: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Botón Flotante en Móvil (Opcional) */
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <p>Edición 2026</p>
+        <h1>Desayuno<br>Real</h1>
+        <p>Una de las actividades empresariales y sociales más relevantes de la Fiesta Nacional de la Vendimia.</p>
+        <p>El “Desayuno Real” es el homenaje de prestigio dentro de la Fiesta Nacional de la Vendimia. Más que una celebración, <strong>es un reconocimiento exclusivo a las soberanas</strong> —la Reina y Virreina Nacional de la Vendimia y las reinas departamentales— y un tributo esencial al <strong>sector vitivinícola,</strong> uno de los principales motores productivos de la República Argentina. Un encuentro cultural, social y político, <strong>declarado de Interés Legislativo en el año 2006.</strong></p>
+        <p>Este evento se ha consolidado como la <strong>cita cumbre de networking</strong> a nivel nacional y regional. Atrae anualmente a las figuras más influyentes del ámbito político (local y nacional), a empresarios líderes de Mendoza, Argentina y el extranjero, y a distinguidas <strong>instituciones.</strong></p>
+        <p>El Desayuno Real no solo genera un clima social de celebración, sino que se erige como un foro dinámico de <strong>intercambio, servicio y participación,</strong>reforzando los lazos entre el sector público y el privado.</p>
+
+    </section>
+
+    <section class="gallery-section">
+        <h2>La Experiencia</h2>
+        <div class="gallery-container">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" alt="Detalle Evento"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80&w=800" alt="Copas"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800" alt="Ambiente"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=800" alt="Mesa"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1530103862676-de3c9da59af7?auto=format&fit=crop&q=80&w=800" alt="Luz"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800" alt="Moda"></div>
+        </div>
+        <p style="text-align: center; margin-top: 10px; font-style: italic; opacity: 0.5;">Deslice para ver más</p>
+    </section>
+
+    <section class="video-section">
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/jEYWq37CsUQ?si=XpjvKEQ7Y_50eSo-" title="Video 1" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/eRPRp75syZQ?si=QWm_Cm6rTl_lO6bR" title="Video 2" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section">
+        <h2>Ubicación</h2>
+        <p style="margin-bottom: 20px;">Los esperamos.</p>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.5517522180457!2d-68.964604!3d-33.03635499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x967dde289586ba99%3A0xa4e17f04467080f!2sLamadrid%20Estate%20Wines!5e1!3m2!1ses-419!2sar!4v1765485642570!5m2!1ses-419!2sar" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section class="sponsors-section">
+        <h2>Organizan</h2>
+        
+        <div class="sponsors-grid-main">
+            <div class="sponsor-logo-main logo-placeholder">Ciudadano.news</div>
+            <div class="sponsor-logo-main logo-placeholder">Cooperativa EGC</div>
+        </div>
+
+        <div style="margin-bottom: 20px; font-family: var(--font-display); font-size: 1.5rem;">Partners</div>
+        <div class="sponsors-grid-secondary">
+            <div class="sponsor-logo-sec">Logo Sponsor 3</div>
+            <div class="sponsor-logo-sec">Logo Sponsor 4</div>
+            <div class="sponsor-logo-sec">Logo Sponsor 5</div>
+            <div class="sponsor-logo-sec">Logo Sponsor 6</div>
+        </div>
+    </section>
+
+    <section id="rsvp" style="text-align: center; background-color: var(--text-color); color: white; margin-top: 50px;">
+        <h2 style="color: white; margin-bottom: 20px;">SÉ PARTE DEL EVENTO</h2>
+        <p style="margin-bottom: 30px; opacity: 0.8;">Por favor confirma tu presencia para asegurar tu lugar en la lista.</p>
+        
+        <a href="LINK_A_TU_GOOGLE_FORM_O_TYPEFORM" target="_blank" class="btn-rsvp" style="border-color: white; color: white;">
+            Confirmar Asistencia Ahora
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Desayuno Real. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
