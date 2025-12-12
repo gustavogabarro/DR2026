@@ -50,7 +50,8 @@
 
         /* --- SECCIONES GENERALES --- */
         section {
-            padding: 60px 20px;
+            /* AJUSTE: Reduje el padding general de 60px a 40px para que todo esté más cerca */
+            padding: 40px 20px; 
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
@@ -61,11 +62,14 @@
             max-width: 100%;
             width: 100%;
             margin: 0;
-            /* Padding ajustado: menos arriba en móvil porque ahora está la imagen */
-            padding: 20px 20px 60px 20px; 
+            /* AJUSTE: Padding inferior reducido a 20px para pegar el texto a la siguiente sección */
+            padding: 20px 20px 20px 20px; 
             
-            min-height: 100vh; 
+            /* AJUSTE CRÍTICO: 'auto' en lugar de '100vh' para móvil. 
+               Esto elimina el espacio blanco sobrante si la pantalla es alta. */
+            min-height: auto; 
             height: auto;
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -98,39 +102,39 @@
             font-style: italic;
         }
 
-        /* --- IMAGEN SUPERIOR (LOGICA NUEVA) --- */
+        /* --- IMAGEN SUPERIOR --- */
         .top-right-img {
             display: block;
-            
-            /* CONFIGURACIÓN MÓVIL (Por defecto) */
-            position: relative; /* Ya no es absoluta, ocupa espacio real */
-            width: 100%;        /* Ancho completo */
-            max-width: 500px;   /* Un límite sano para tablets verticales */
+            position: relative; 
+            width: 100%;        
+            max-width: 500px;   
             height: auto;
-            opacity: 1;         /* Sin transparencia */
-            margin: 0 auto -40px auto; /* Centrada y con margen negativo abajo para acercar el título */
+            opacity: 1;         
+            margin: 0 auto -40px auto; 
             z-index: 0;
         }
 
         /* CONFIGURACIÓN ESCRITORIO (Pantallas grandes) */
         @media (min-width: 1024px) {
             .hero {
-                padding: 100px 20px; /* Recuperamos padding original en PC */
+                /* En escritorio sí dejamos que ocupe toda la pantalla para elegancia */
+                min-height: 100vh; 
+                padding: 100px 20px; 
             }
 
             .top-right-img {
-                position: absolute; /* Vuelve a la esquina */
+                position: absolute; 
                 top: 0;
                 right: 0;
                 width: 30vw; 
                 max-width: 600px; 
                 opacity: 1;
-                margin: 0; /* Quitamos el margen del móvil */
+                margin: 0; 
                 z-index: -1;
             }
             
             section {
-                padding: 80px 20px;
+                padding: 80px 20px; /* Restauramos padding más aireado en PC */
             }
         }
 
