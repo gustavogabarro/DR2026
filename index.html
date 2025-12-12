@@ -61,7 +61,6 @@
             max-width: 100%;
             width: 100%;
             margin: 0;
-            /* Quitamos padding superior para que la imagen toque el borde en desktop */
             padding: 0 20px 40px 20px; 
             
             min-height: auto; 
@@ -74,7 +73,7 @@
             text-align: center;
             position: relative; 
             z-index: 1; 
-            overflow: hidden; /* Necesario para contener la imagen de fondo */
+            overflow: hidden; 
         }
 
         /* --- IMAGEN HERO (Picture) --- */
@@ -94,17 +93,25 @@
         /* ESTILOS MOBILE (Por defecto) */
         .hero-picture {
             position: relative;
-            /* Márgenes negativos para anular el padding de la sección y tocar bordes */
             margin-top: 0; 
             margin-left: -20px;
             margin-right: -20px;
-            width: calc(100% + 40px); /* Compensa los 20px de cada lado */
+            width: calc(100% + 40px); 
             margin-bottom: 30px; 
         }
 
         .hero-img {
             height: auto;
-            min-height: 250px; /* Altura mínima para que destaque en móvil */
+            min-height: 250px; 
+        }
+
+        /* --- NUEVO: ICONO SUPERIOR --- */
+        .hero-top-icon {
+            display: block;
+            width: 50px; 
+            height: auto;
+            margin-bottom: 15px; 
+            position: relative;
         }
 
         .hero h1 {
@@ -133,25 +140,16 @@
             position: relative;
         }
 
-        /* --- NUEVO LOGO AL FINAL DEL TEXTO --- */
-        .hero-bottom-logo {
-            display: block;
-            margin: 40px auto 0 auto;
-            width: 80%; 
-            height: auto;
-            position: relative;
-        }
+        /* (ELIMINADO) .hero-bottom-logo ya no se usa aquí */
 
         /* CONFIGURACIÓN ESCRITORIO */
         @media (min-width: 1024px) {
             .hero {
-                /* Altura mínima en desktop para que luzca la imagen de fondo */
                 min-height: 90vh; 
                 padding: 80px 20px; 
             }
 
             .hero-picture {
-                /* Posición absoluta para ir al fondo */
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -164,10 +162,9 @@
                 width: 100%;
                 height: 100%;
                 object-fit: cover; 
-                opacity: 1; /* Opacidad al 100% */
+                opacity: 1; 
             }
 
-            /* Gradiente blanco suave para que el texto se lea sobre la imagen */
             .hero::after {
                 content: '';
                 position: absolute;
@@ -177,10 +174,6 @@
                 height: 100%;
                 background: linear-gradient(to bottom, rgba(249,248,244,0.7), rgba(249,248,244,0.95));
                 z-index: -1;
-            }
-
-            .hero-bottom-logo {
-                width: 350px; 
             }
             
             section {
@@ -193,6 +186,18 @@
         }
 
         /* --- GALERÍA HORIZONTAL --- */
+        
+        /* NUEVO CSS: Imagen cabecera de galería */
+        .gallery-header-image {
+            display: block;
+            height: auto;
+            /* Mobile: Ancho completo usando márgenes negativos para romper el padding de la sección */
+            width: calc(100% + 40px);
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: 40px; /* Espacio antes del título */
+        }
+
         .gallery-section h2 {
             font-size: 3rem;
             margin-bottom: 40px;
@@ -229,6 +234,18 @@
             .gallery-item {
                 flex: 0 0 400px;
                 height: 500px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            /* NUEVO CSS Desktop: Ajuste de la imagen cabecera */
+            .gallery-header-image {
+                /* Reseteamos los márgenes negativos de mobile */
+                margin-left: 0;
+                margin-right: 0;
+                /* Ancho 100% del contenedor padre (que es el mismo ancho de la galería) */
+                width: 100%;
+                margin-bottom: 60px;
             }
         }
 
@@ -386,9 +403,10 @@
         
         <picture class="hero-picture">
             <source media="(min-width: 1024px)" srcset="./image/imagen_cabeza.png">
-            
             <img src="./image/imagen_cabeza.png" alt="Portada" class="hero-img">
         </picture>
+
+        <img src="./image/uva.svg" alt="Icono" class="hero-top-icon">
 
         <p class="hero-year">Edición 2026</p>
         <h1>Desayuno<br>Real</h1>
@@ -401,10 +419,11 @@
         
         <p class="hero-text">El Desayuno Real no solo genera un clima social de celebración, sino que se erige como un foro dinámico de <strong>intercambio, servicio y participación,</strong> reforzando los lazos entre el sector público y el privado.</p>
         
-        <img src="./image/logo DR 26.svg" alt="Logo Adicional" class="hero-bottom-logo">
-    </section>
+        </section>
 
     <section class="gallery-section">
+        <img src="./image/imagen_horizontal.png" alt="Logo Adicional" class="gallery-header-image">
+
         <h2>Galería</h2>
         <div class="gallery-container">
             <div class="gallery-item"><img src="./image/Imagen-de-WhatsApp-2025-03-07-a-las-10.59.14_6eca3d9c.png" alt="DR"></div>
