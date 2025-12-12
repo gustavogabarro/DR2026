@@ -61,7 +61,8 @@
             max-width: 100%;
             width: 100%;
             margin: 0;
-            padding: 0 20px 40px 20px; /* Quitamos padding superior para que la img toque el borde en desktop si es necesario */
+            /* Quitamos padding superior para que la imagen toque el borde en desktop */
+            padding: 0 20px 40px 20px; 
             
             min-height: auto; 
             height: auto;
@@ -73,10 +74,10 @@
             text-align: center;
             position: relative; 
             z-index: 1; 
-            overflow: hidden; /* Necesario para contener la imagen absoluta en desktop */
+            overflow: hidden; /* Necesario para contener la imagen de fondo */
         }
 
-        /* --- ESTRUCTURA DE IMAGEN INTELIGENTE (PICTURE) --- */
+        /* --- IMAGEN HERO (Picture) --- */
         .hero-picture {
             display: block;
             width: 100%;
@@ -93,64 +94,25 @@
         /* ESTILOS MOBILE (Por defecto) */
         .hero-picture {
             position: relative;
-            /* Estos márgenes negativos fuerzan a la imagen a ocupar el ancho de pantalla
-               rompiendo el padding de 20px que tiene el padre */
+            /* Márgenes negativos para anular el padding de la sección y tocar bordes */
+            margin-top: 0; 
             margin-left: -20px;
             margin-right: -20px;
-            width: calc(100% + 40px);
-            margin-bottom: 30px; /* Espacio antes del título */
+            width: calc(100% + 40px); /* Compensa los 20px de cada lado */
+            margin-bottom: 30px; 
         }
 
         .hero-img {
-            /* En mobile la imagen es relativa y empuja el contenido */
             height: auto;
-            min-height: 250px; /* Altura mínima para que luzca */
+            min-height: 250px; /* Altura mínima para que destaque en móvil */
         }
 
-        /* ESTILOS DESKTOP */
-        @media (min-width: 1024px) {
-            .hero {
-                min-height: 90vh; /* En desktop damos altura para que la imagen horizontal luzca */
-                padding: 80px 20px; 
-            }
-
-            .hero-picture {
-                /* En desktop la imagen se va al fondo absoluta */
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                margin: 0;
-            }
-
-            .hero-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover; /* Recorta la imagen para llenar el fondo sin deformar */
-                opacity: 0.3; /* Bajamos opacidad para que el texto se lea encima */
-            }
-
-            /* Opcional: Un gradiente para que el texto se lea mejor sobre la imagen horizontal */
-            .hero::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(to bottom, rgba(249,248,244,0.8), rgba(249,248,244,1));
-                z-index: -1;
-            }
-        }
-
-        /* --- TEXTOS HERO --- */
         .hero h1 {
             font-size: clamp(3.5rem, 12vw, 8rem);
             line-height: 1; 
             margin-bottom: 30px;
             word-wrap: break-word;
-            position: relative; /* Para quedar sobre el fondo */
+            position: relative;
         }
 
         .hero-text {
@@ -180,9 +142,49 @@
             position: relative;
         }
 
+        /* CONFIGURACIÓN ESCRITORIO */
         @media (min-width: 1024px) {
+            .hero {
+                /* Altura mínima en desktop para que luzca la imagen de fondo */
+                min-height: 90vh; 
+                padding: 80px 20px; 
+            }
+
+            .hero-picture {
+                /* Posición absoluta para ir al fondo */
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+
+            .hero-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; 
+                opacity: 1; /* Opacidad al 100% */
+            }
+
+            /* Gradiente blanco suave para que el texto se lea sobre la imagen */
+            .hero::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to bottom, rgba(249,248,244,0.7), rgba(249,248,244,0.95));
+                z-index: -1;
+            }
+
             .hero-bottom-logo {
                 width: 350px; 
+            }
+            
+            section {
+                padding: 60px 20px; 
             }
         }
 
@@ -325,6 +327,7 @@
             width: 100%;
         }
 
+        /* AJUSTE CORRECTIVO DE LOGOS */
         .sponsor-svg {
             height: auto;
             width: auto;
@@ -384,7 +387,7 @@
         <picture class="hero-picture">
             <source media="(min-width: 1024px)" srcset="./image/imagen_cabeza.png">
             
-            <img src="./image/imagen_cabeza.png" alt="Imagen Hero" class="hero-img">
+            <img src="./image/imagen_cabeza.png" alt="Portada" class="hero-img">
         </picture>
 
         <p class="hero-year">Edición 2026</p>
@@ -404,6 +407,7 @@
     <section class="gallery-section">
         <h2>Galería</h2>
         <div class="gallery-container">
+            <div class="gallery-item"><img src="./image/Imagen-de-WhatsApp-2025-03-07-a-las-10.59.14_6eca3d9c.png" alt="DR"></div>
             <div class="gallery-item"><img src="./image/Desayuno 2022_180.JPG" alt="DR"></div>
             <div class="gallery-item"><img src="./image/bf0a919b-c15a-4e7e-86f9-c19ddf3cdde2.jpeg" alt="DR"></div>
             <div class="gallery-item"><img src="./image/desayuno-real-2025-10.jpg" alt="DR"></div>
@@ -444,7 +448,7 @@
 
     <section class="closing-section">
         <h2>SÉ PARTE DEL EVENTO</h2>
-        <p>Una evento exclusivo te espera.</p>
+        <p>Un evento exclusivo te espera.</p>
     </section>
 
     <footer>
