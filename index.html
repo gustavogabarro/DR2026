@@ -82,8 +82,9 @@
             font-weight: 300;
             max-width: 800px;
             margin-bottom: 20px;
-            text-align: justify;
-            text-align-last: center;
+            
+            /* CAMBIO: Alineación centrada natural (sin forzar bordes) */
+            text-align: center; 
         }
         
         .hero-year {
@@ -93,21 +94,25 @@
             font-style: italic;
         }
 
-        /* IMAGEN SUPERIOR DERECHA (Desktop Only) */
+        /* IMAGEN SUPERIOR DERECHA */
         .top-right-img {
-            display: none; 
+            /* CAMBIO: Ahora se muestra siempre (display: block) */
+            display: block; 
             position: absolute;
             top: 0;
             right: 0;
-            z-index: -1; 
+            z-index: -1;
+            
+            /* Tamaño para MÓVIL */
+            width: 45vw; /* Ocupa casi la mitad del ancho en móvil */
+            max-width: 200px; 
         }
 
+        /* Ajustes para ESCRITORIO */
         @media (min-width: 1024px) {
             .top-right-img {
-                display: block;
                 width: 30vw; 
                 max-width: 600px; 
-                height: auto;
             }
         }
 
@@ -265,13 +270,11 @@
             padding: 100px 20px;
         }
 
-        /* ESTILO ACTUALIZADO PARA EL LOGO */
         .closing-logo {
-            max-width: 250px; /* Tamaño duplicado */
+            max-width: 250px;
             height: auto;
-            /* El margen auto a los lados asegura el centrado */
             margin: 0 auto 30px auto; 
-            display: block; /* Importante para que el margen auto funcione */
+            display: block;
             filter: brightness(0) invert(1); 
         }
 
@@ -301,7 +304,7 @@
 <body>
 
     <section class="hero">
-        <img src="./image/hoja sola.png" alt="Logo Superior" class="top-right-img">
+        <img src="/image/hoja sola.png" alt="Logo Superior" class="top-right-img">
 
         <p class="hero-year">Edición 2026</p>
         <h1>Desayuno<br>Real</h1>
@@ -318,12 +321,12 @@
     <section class="gallery-section">
         <h2>La Experiencia</h2>
         <div class="gallery-container">
-            <div class="gallery-item"><img src="./image/Desayuno 2022_180.JPG" alt="DR"></div>
-            <div class="gallery-item"><img src="./image/bf0a919b-c15a-4e7e-86f9-c19ddf3cdde2.jpeg" alt="DR"></div>
-            <div class="gallery-item"><img src="./image/desayuno-real-2025-10.jpg" alt="DR"></div>
-            <div class="gallery-item"><img src="./image/MA1_6550.JPG" alt="DR"></div>
-            <div class="gallery-item"><img src="./image/MA1_6894.JPG" alt="DR"></div>
-            <div class="gallery-item"><img src="./image/DSC00645.jpg" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/Desayuno 2022_180.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/bf0a919b-c15a-4e7e-86f9-c19ddf3cdde2.jpeg" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/desayuno-real-2025-10.jpg" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/MA1_6550.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/MA1_6894.JPG" alt="DR"></div>
+            <div class="gallery-item"><img src="/image/DSC00645.jpg" alt="DR"></div>
         </div>
         <p style="text-align: center; margin-top: 10px; font-style: italic; opacity: 0.5;">Deslice para ver más</p>
     </section>
@@ -351,13 +354,13 @@
         <h2>Organizan</h2>
         
         <div class="sponsors-grid-main">
-            <img src="./image/logo_cn.svg" alt="Ciudadano.news" class="sponsor-svg">
-            <img src="./image/logo_cegc.svg" alt="Cooperativa EGC" class="sponsor-svg">
+            <img src="/image/logo_cn.svg" alt="Ciudadano.news" class="sponsor-svg">
+            <img src="/image/logo_cegc.svg" alt="Cooperativa EGC" class="sponsor-svg">
         </div>
     </section>
 
     <section class="closing-section">
-        <img src="./image/logo DR 26.svg" alt="Logo Desayuno Real" class="closing-logo">
+        <img src="/image/tu-logo.svg" alt="Logo Desayuno Real" class="closing-logo">
         <h2>SÉ PARTE DEL EVENTO</h2>
         <p>Una experiencia única te espera.</p>
     </section>
