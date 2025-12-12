@@ -58,7 +58,7 @@
 
         /* --- CONTENEDOR DE LA IMAGEN SEPARADORA --- */
         .full-width-container {
-            /* Mobile: Ancho completo */
+            /* Mobile: Ancho completo (100%) */
             width: 100%;
             max-width: 100%;
             padding: 0;
@@ -110,7 +110,9 @@
             margin-left: -20px;
             margin-right: -20px;
             width: calc(100% + 40px); 
-            margin-bottom: 0px; /* Margen inferior eliminado en mobile */
+            
+            /* Eliminamos margen inferior para facilitar el overlap */
+            margin-bottom: 0px; 
         }
 
         .hero-img {
@@ -125,9 +127,15 @@
             display: block;
             width: 50px; 
             height: auto;
-            margin-top: -20px; /* Sube el icono en mobile */
+            
+            /* AJUSTE MOBILE: Margen negativo grande para subir sobre la foto */
+            margin-top: -160px; 
+            
             margin-bottom: 10px; 
+            
+            /* Importante: Z-index para que quede ENCIMA de la foto */
             position: relative;
+            z-index: 10;
         }
 
         .hero h1 {
@@ -135,8 +143,11 @@
             line-height: 1; 
             margin-bottom: 30px;
             word-wrap: break-word;
-            position: relative;
             margin-top: 0;
+            
+            /* Z-index para asegurar visibilidad sobre el fondo si fuera necesario */
+            position: relative;
+            z-index: 10;
         }
 
         .hero-text {
@@ -154,7 +165,10 @@
             font-size: 1.5rem;
             margin-bottom: 5px; 
             font-style: italic;
+            
+            /* Z-index para el año también */
             position: relative;
+            z-index: 10;
         }
 
         /* CONFIGURACIÓN ESCRITORIO */
@@ -180,12 +194,12 @@
                 opacity: 1; 
             }
 
-            /* CAMBIO REALIZADO: Eliminado el degradado blanco (overlay) */
+            /* CAMBIO: Eliminamos el degradado para quitar transparencia */
             .hero::after {
                 display: none; 
             }
             
-            /* Reseteo de márgenes mobile para desktop */
+            /* Reseteamos el margen del icono para que no suba en Desktop */
             .hero-top-icon {
                 margin-top: 0;
                 margin-bottom: 20px;
@@ -195,16 +209,16 @@
                 margin-bottom: 10px;
             }
             
-            /* CAMBIO REALIZADO: Ajuste del separador en Desktop */
+            /* CAMBIO: Ajustamos el separador para alinearse con la galería */
             .full-width-container {
-                max-width: 1200px; /* Mismo ancho máximo que la galería */
+                max-width: 1200px; /* Ancho máximo igual a las secciones */
                 margin: 0 auto;    /* Centrado */
-                padding: 0 20px;   /* Mismo padding lateral para alinear exacto */
-                margin-bottom: 40px; /* Separación con la galería */
+                padding: 0 20px;   /* Padding lateral para alinear con el texto */
+                margin-bottom: 40px; 
             }
 
             .separator-picture {
-                border-radius: 4px; /* Opcional: un detalle estético en desktop */
+                border-radius: 4px; 
             }
             
             section {
